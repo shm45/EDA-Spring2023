@@ -1,6 +1,6 @@
 ---
 title: "Assignment 2: Coding Basics"
-author: "Student Name"
+author: "Sophie Moyer"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
@@ -20,6 +20,11 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 5.  When you have completed the assignment, **Knit** the text and code into a single PDF file.
 6.  After Knitting, submit the completed exercise (PDF file) to Sakai.
 
+```{r install tiny tex, eval=FALSE, include=FALSE}
+#install tinytext
+tinytex::install_tinytex()
+```
+
 ## Basics Day 1
 
 1.  Generate a sequence of numbers from one to 100, increasing by fours. Assign this sequence a name.
@@ -30,9 +35,7 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 4.  Insert comments in your code to describe what you are doing.
 
-```{r}
-install.packages("tidyverse")
-install.packages("dplyr")
+```{r Q1}
 
 seq(1,100, by = 4)
 test_numbers <- seq(1,100, by = 4)
@@ -65,18 +68,19 @@ mean > median
 
 8.  Label the columns of your data frame with informative titles.
 
-```{r}
+```{r Q2}
 
 student <- c("Sarah", "Max", "George", "Emily") ## character vector
 grade <- c(92,56,87,42) ## numeric vector
-final <- c(TRUE, TRUE, FALSE, TRUE) ## logical vector
+final <- c(TRUE, TRUE, TRUE, FALSE) ## logical vector
 
 class2023 <- data.frame(student, grade, final)
 
-library(dplyr)
-class2023 <- class2023 %>% rename("Student Name" = "student", "Class Grade" = "grade", "Passed Final" = "final")
-print(class2023)
+colnames(class2023)[1] = "Student Name"
+colnames(class2023)[2] = "Class Grade"
+colnames(class2023)[3] = "Passed Final"
 
+print(class2023)
 ```
 
 9.  QUESTION: How is this data frame different from a matrix?
@@ -87,7 +91,7 @@ print(class2023)
 
 11. Apply your function to the vector with test scores that you created in number 5.
 
-```{r}
+```{r Q3}
 
 ifelse(grade > 50, "True", "False")
 
